@@ -1,0 +1,49 @@
+*
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+
+.parallax
+  overflow-x: hidden
+  position: absolute
+  top: 0
+  bottom: 0
+  right: 0
+  left: 50%
+  margin-left: -1500px
+  height: 100vh
+  background: #FFD0CA
+  perspective: 150px
+
+  &__layer
+    position: absolute
+    display: block
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    img
+      position: absolute
+      bottom: 0
+
+  &__content
+    position: absolute 
+    top: 100%
+    left: 0
+    right: 0
+    width: 100%
+    height: 2000px
+    background: #2D112B
+    transform: translateZ(0)
+
+     
+$layers: 7
+
+@for $layerNum from $layers through 1 
+  .parallax__layer:nth-child(#{$layerNum})
+
+    $currentLayer: $layers - $layerNum
+    $perspective: $currentLayer * -50px
+    $scale: $currentLayer * .5 + 1
+
+    transform: translateZ($perspective) scale($scale)
